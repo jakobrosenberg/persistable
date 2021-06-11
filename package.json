@@ -1,0 +1,26 @@
+{
+  "name": "persistable",
+  "version": "0.0.1",
+  "description": "persist the return of a function",
+  "main": "index.js",
+  "scripts": {
+    "test": "uvu test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakobrosenberg/persistable.git"
+  },
+  "keywords": [
+    "caching",
+    "data"
+  ],
+  "author": "jakobrosenberg@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jakobrosenberg/persistable/issues"
+  },
+  "homepage": "https://github.com/jakobrosenberg/persistable#readme",
+  "devDependencies": {
+    "uvu": "^0.5.1"
+  }
+}
