@@ -4,6 +4,7 @@
   "description": "persist the return of a function",
   "main": "index.js",
   "scripts": {
+    "test": "uvu test test\\.js",
     "build": "documentation readme typedef.js --section=API"
   },
   "repository": {
