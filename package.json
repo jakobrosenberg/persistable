@@ -4,7 +4,7 @@
   "description": "persist the return of a function",
   "main": "index.js",
   "scripts": {
-    "test": "uvu test"
+    "build": "documentation readme typedef.js --section=API"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/jakobrosenberg/persistable#readme",
   "devDependencies": {
+    "documentation": "^13.2.5",
     "uvu": "^0.5.1"
   }
 }
