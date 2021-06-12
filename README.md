@@ -39,7 +39,7 @@ const persist = persistable({ outputDir: 'data' })
 const value1 = persist(Math.random)
 const value2 = persist(Math.random)
 const value3 = persist(Math.random, true) // refresh on 2nd param
-const value4 = persist(Math.random) // refresh on 2nd param
+const value4 = persist(Math.random)
 
 console.log(value1 === value2) // true
 console.log(value2 != value3) // true
