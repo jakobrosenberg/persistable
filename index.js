@@ -2,11 +2,12 @@ const { existsSync, writeFileSync, mkdirSync } = require('fs')
 const { resolve } = require('path')
 const { fnToName } = require('./utils')
 // @ts-ignore
-require('./typedef') 
+require('./typedef')
 
 /** @type {Options} */
 const defaults = {
   outputDir: 'persistable',
+  minify: false,
 }
 
 /** @type {persistable} */
@@ -18,7 +19,10 @@ const persistable = (options = {}) => async (callback, refresh, name) => {
   if (!existsSync(filepath) || refresh) {
     mkdirSync(options.outputDir, { recursive: true })
     const res = await callback()
-    writeFileSync(filepath, 'module.exports = ' + JSON.stringify(res))
+    writeFileSync(
+      filepath,
+      'module.exports = ' + JSON.stringify(res, null, options.minify ? 0 : 2),
+    )
   }
 
   delete require.cache[require.resolve(filepath)]

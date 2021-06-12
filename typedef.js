@@ -14,5 +14,6 @@
 
 /**
  * @typedef {object} Options
- * @prop {string} outputDir
+ * @prop {string} [outputDir] location to save persisted return values
+ * @prop {boolean} [minify=false] inline JSON objects
  */
