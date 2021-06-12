@@ -1,21 +1,15 @@
 const { existsSync, writeFileSync, mkdirSync } = require('fs')
 const { resolve } = require('path')
 const { fnToName } = require('./utils')
+// @ts-ignore
+require('./typedef') 
 
-/**
- * @typedef {object} Defaults
- * @prop {string} outputDir
- */
-
-/** @type {Defaults} */
+/** @type {Options} */
 const defaults = {
   outputDir: 'persistable',
 }
 
-/**
- * @param {Partial<Defaults>} options
- * @returns
- */
+/** @type {persistable} */
 const persistable = (options = {}) => async (callback, refresh, name) => {
   name = name || fnToName(callback)
   options = Object.assign(defaults, options)
