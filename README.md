@@ -67,7 +67,7 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 
 *   `callback` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** callback to be persisted
 *   `refresh` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** call the callback (optional, default `false`)
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** defaults to hashed callback
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** (optional, defaults to hashed callback)
 
 #### persistable
 
@@ -87,5 +87,5 @@ Type: [object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ##### Properties
 
-*   `outputDir` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** location to save persisted return values
-*   `minify` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** inline JSON objects
+*   `outputDir` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** location to save persisted return values (optional, default `persistable`)
+*   `minify` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** inline JSON objects (optional, default `false`)
