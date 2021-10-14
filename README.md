@@ -52,14 +52,14 @@ console.log(value3 === value4) // true
 
 ##### Table of Contents
 
-*   [persist](#persist)
+*   [PersistFn](#persistfn)
     *   [Parameters](#parameters)
-*   [persistable](#persistable)
+*   [Persistable](#persistable)
     *   [Parameters](#parameters-1)
 *   [Options](#options)
     *   [Properties](#properties)
 
-#### persist
+#### PersistFn
 
 Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
 
@@ -67,9 +67,11 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 
 *   `callback` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** callback to be persisted
 *   `refresh` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** call the callback (optional, default `false`)
-*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** (optional, defaults to hashed callback)
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** defaults to hashed callback
 
-#### persistable
+####
+
+#### Persistable
 
 Creates new instance of persistable
 
@@ -79,7 +81,7 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 
 *   `options` **Partial<[Options](#options)>?** 
 
-Returns **[persist](#persist)** 
+Returns **Persist** 
 
 #### Options
 
@@ -87,5 +89,5 @@ Type: [object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ##### Properties
 
-*   `outputDir` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** location to save persisted return values (optional, default `persistable`)
-*   `minify` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** inline JSON objects (optional, default `false`)
+*   `outputDir` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** location to save persisted return values
+*   `minify` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** inline JSON objects

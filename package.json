@@ -2,11 +2,18 @@
   "name": "persistable",
   "version": "0.1.0",
   "description": "persist the return of a function",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "//exports": {
+    ".": {
+      "//import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    }
+  },
   "scripts": {
     "test": "uvu test test\\.js",
-    "build": "documentation readme typedef.js --section=API"
+    "build": "tsc && documentation readme typedef.js --section=API"
   },
+  "typings": "typings",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jakobrosenberg/persistable.git"
@@ -23,6 +30,7 @@
   "homepage": "https://github.com/jakobrosenberg/persistable#readme",
   "devDependencies": {
     "documentation": "^13.2.5",
+    "typescript": "^4.4.4",
     "uvu": "^0.5.1"
   }
 }

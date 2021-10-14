@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "checkJs": true,
+        "allowJs": true,
+        "declaration": true,
+        "moduleResolution": "Node",
+        "rootDirs": ["."],
+        "target": "ES2021",
+        "declarationDir": "typings",
+        "emitDeclarationOnly": true,
+        "allowSyntheticDefaultImports": true,
+    },
+    "include": ["lib/**/*.js", "typedef.js"],
+    "exclude": [
+        "**/node_modules/*",
+        "**/.history/*",
+        "test",
+    ]
+}
