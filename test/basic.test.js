@@ -62,8 +62,8 @@ test('JSON data minifies when specified', async () => {
   await persist(syncFunctionObject, false, 'no-minify')
   await persistInline(syncFunctionObject, false, 'minify')
 
-  assert.is(readFileSync(__dirname + '/temp/no-minify.json', 'utf-8'), '{\n  "counter": 7\n}')
-  assert.is(readFileSync(__dirname + '/temp/minify.json', 'utf-8'), '{"counter":8}')
+  assert.is(readFileSync(__dirname + '/temp/no-minify.json', 'utf-8').split('\n').length, 6)
+  assert.is(readFileSync(__dirname + '/temp/minify.json', 'utf-8').split('\n').length, 1)
 })
 
 test('can change outputDir', async () => {
