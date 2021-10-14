@@ -10,24 +10,32 @@ const defaults = {
   minify: false,
 }
 
-/** @type {persistable} */
-const persistable = (options = {}) => async (callback, refresh, name) => {
-  name = name || fnToName(callback)
+/** @type {Persistable} */
+const persistable = (options = {}) => {
   options = Object.assign(defaults, options)
-  const filepath = resolve(options.outputDir, name + '.js')
 
-  if (!existsSync(filepath) || refresh) {
-    mkdirSync(options.outputDir, { recursive: true })
-    const res = await callback()
-    writeFileSync(
-      filepath,
-      'module.exports = ' + JSON.stringify(res, null, options.minify ? 0 : 2),
-    )
+  /** @type {Persist} */
+  const persist = async (callback, refresh, name) => {
+    name = name || fnToName(callback)
+    const filepath = resolve(persist.outputDir, name + '.js')
+
+    if (!existsSync(filepath) || refresh) {
+      mkdirSync(persist.outputDir, { recursive: true })
+      const res = await callback()
+      writeFileSync(
+        filepath,
+        'module.exports = ' + JSON.stringify(res, null, persist.minify ? 0 : 2),
+      )
+    }
+
+    delete require.cache[require.resolve(filepath)]
+
+    return require(filepath)
   }
 
-  delete require.cache[require.resolve(filepath)]
+  Object.assign(persist, options)
 
-  return require(filepath)
+  return persist
 }
 
 module.exports = persistable

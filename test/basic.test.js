@@ -1,4 +1,4 @@
-const { readFileSync } = require('fs')
+const { readFileSync, existsSync, readdirSync } = require('fs')
 const { test } = require('uvu')
 const assert = require('uvu/assert')
 const persistable = require('../index.js')
@@ -11,7 +11,8 @@ const asyncFunction = async () => 'result from async function ' + counter++
 const syncFunctionObject = () => ({ counter: counter++ })
 
 test.before(() => {
-  require('fs').rmdirSync(__dirname + '/temp', { recursive: true })
+  if (existsSync(__dirname + '/temp'))
+    require('fs').rmSync(__dirname + '/temp', { recursive: true })
 })
 
 test('can persist a value from sync function', async () => {
@@ -63,9 +64,17 @@ test('JSON data minifies when specified', async () => {
   const persistInline = persistable({ outputDir: __dirname + '/temp', minify: true })
   await persist(syncFunctionObject, false, 'no-minify')
   await persistInline(syncFunctionObject, false, 'minify')
-  
-  assert.is(readFileSync(__dirname+'/temp/no-minify.js', 'utf-8'), 'module.exports = {\n  "counter": 7\n}')
-  assert.is(readFileSync(__dirname+'/temp/minify.js', 'utf-8'), 'module.exports = {"counter":8}')
+
+  assert.is(readFileSync(__dirname + '/temp/no-minify.js', 'utf-8'), 'module.exports = {\n  "counter": 7\n}')
+  assert.is(readFileSync(__dirname + '/temp/minify.js', 'utf-8'), 'module.exports = {"counter":8}')
+})
+
+test('can change outputDir', async () => {
+  const persist = persistable({ outputDir: __dirname + '/temp/' })
+  persist.outputDir = __dirname + '/temp/changedDir'
+  await persist(syncFunction)
+  assert.ok(existsSync(__dirname + '/temp/changedDir'))
+  assert.is(readdirSync(__dirname + '/temp/changedDir').length, 1)
 })
 
 test.run()

@@ -1,15 +1,19 @@
 /**
- * @callback persist
+ * @callback PersistFn
  * @param {function} callback callback to be persisted
  * @param {boolean} [refresh=false] call the callback
  * @param {string} [name] defaults to hashed callback
  */
 
 /**
+ * @typedef {PersistFn & Options} Persist
+ */
+
+/**
  * Creates new instance of persistable
- * @callback persistable
+ * @callback Persistable
  * @param {Partial<Options>} [options]
- * @returns {persist}
+ * @returns {Persist}
  */
 
 /**
