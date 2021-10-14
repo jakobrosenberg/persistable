@@ -1,7 +1,7 @@
 const { readFileSync, existsSync, readdirSync } = require('fs')
 const { test } = require('uvu')
 const assert = require('uvu/assert')
-const persistable = require('../index.js')
+const persistable = require('../lib/index.js')
 const persist = persistable({ outputDir: __dirname + '/temp' })
 
 let counter = 0
@@ -19,7 +19,6 @@ test('can persist a value from sync function', async () => {
   const result1 = await persist(syncFunction)
   const result2 = await persist(syncFunction)
 
-  Object.keys(require.cache).forEach((key) => delete require.cache[key])
   const resultRefreshed = await persist(syncFunction, true)
 
   assert.is(result1, 'result from sync function 0')
@@ -31,7 +30,6 @@ test('can persist a value from async function', async () => {
   const result1 = await persist(asyncFunction)
   const result2 = await persist(asyncFunction)
 
-  Object.keys(require.cache).forEach((key) => delete require.cache[key])
   const resultRefreshed = await persist(asyncFunction, true)
 
   assert.is(result1, 'result from async function 2')
@@ -43,10 +41,9 @@ test('can use specified name', async () => {
   const result1 = await persist(syncFunction, false, 'explicit')
   const result2 = await persist(syncFunction, false, 'explicit')
 
-  Object.keys(require.cache).forEach((key) => delete require.cache[key])
   const resultRefreshed = await persist(syncFunction, true, 'explicit')
 
-  assert.ok(require('fs').existsSync(__dirname + '/temp/explicit.js'))
+  assert.ok(require('fs').existsSync(__dirname + '/temp/explicit.json'))
   assert.is(result1, 'result from sync function 4')
   assert.is(result2, 'result from sync function 4')
   assert.is(resultRefreshed, 'result from sync function 5')
@@ -65,8 +62,8 @@ test('JSON data minifies when specified', async () => {
   await persist(syncFunctionObject, false, 'no-minify')
   await persistInline(syncFunctionObject, false, 'minify')
 
-  assert.is(readFileSync(__dirname + '/temp/no-minify.js', 'utf-8'), 'module.exports = {\n  "counter": 7\n}')
-  assert.is(readFileSync(__dirname + '/temp/minify.js', 'utf-8'), 'module.exports = {"counter":8}')
+  assert.is(readFileSync(__dirname + '/temp/no-minify.json', 'utf-8'), '{\n  "counter": 7\n}')
+  assert.is(readFileSync(__dirname + '/temp/minify.json', 'utf-8'), '{"counter":8}')
 })
 
 test('can change outputDir', async () => {
