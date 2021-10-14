@@ -1,6 +1,6 @@
 {
   "name": "persistable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "persist the return of a function",
   "main": "lib/index.js",
   "//exports": {
