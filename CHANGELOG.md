@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/jakobrosenberg/persistable/compare/v0.1.1...v0.1.2) (2021-10-14)
+
+
+### Features
+
+* added timestamp to json ([725512b](https://github.com/jakobrosenberg/persistable/commit/725512b0199b144ea40fff6ca09524e7225c2fc9))
+
 ### [0.1.1](https://github.com/jakobrosenberg/persistable/compare/v0.1.0...v0.1.1) (2021-10-14)
 
 
